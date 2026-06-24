@@ -1,0 +1,46 @@
+project:
+  name: "CyberSentinel-AI"
+  version: "1.0.0"
+  random_state: 42
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  features_dir: "data/features"
+  files:
+    monday:             "Monday-WorkingHours.pcap_ISCX.csv"
+    tuesday:            "Tuesday-WorkingHours.pcap_ISCX.csv"
+    wednesday:          "Wednesday-workingHours.pcap_ISCX.csv"
+    thursday_morning:   "Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv"
+    thursday_afternoon: "Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv"
+    friday_morning:     "Friday-WorkingHours-Morning.pcap_ISCX.csv"
+    friday_portscan:    "Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv"
+    friday_ddos:        "Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv"
+
+training:
+  test_size: 0.15
+  val_size: 0.15
+
+models:
+  isolation_forest:
+    contamination: 0.1
+    n_estimators: 200
+  random_forest:
+    n_estimators: 200
+    max_depth: 20
+    n_jobs: -1
+  autoencoder:
+    latent_dim: 16
+    epochs: 50
+    batch_size: 1024
+  lstm:
+    sequence_length: 10
+    hidden_size: 64
+    num_layers: 2
+    epochs: 30
+
+azure:
+  resource_group: "cybersentinel-rg"
+  location: "eastus"
+  event_hub_namespace: "cybersentinel-events"
+  sentinel_workspace: "cybersentinel-sentinel"
