@@ -1,0 +1,97 @@
+{
+  "n_features": 48,
+  "feature_names": [
+    "Flow Duration",
+    "Total Fwd Packets",
+    "Total Length of Fwd Packets",
+    "Fwd Packet Length Max",
+    "Fwd Packet Length Min",
+    "Fwd Packet Length Mean",
+    "Fwd Packet Length Std",
+    "Bwd Packet Length Max",
+    "Bwd Packet Length Min",
+    "Bwd Packet Length Mean",
+    "Flow Bytes/s",
+    "Flow Packets/s",
+    "Flow IAT Mean",
+    "Flow IAT Std",
+    "Flow IAT Max",
+    "Flow IAT Min",
+    "Fwd IAT Mean",
+    "Fwd IAT Std",
+    "Fwd IAT Min",
+    "Bwd IAT Total",
+    "Bwd IAT Mean",
+    "Bwd IAT Std",
+    "Bwd IAT Max",
+    "Bwd IAT Min",
+    "Fwd PSH Flags",
+    "Fwd Header Length",
+    "Bwd Header Length",
+    "Fwd Packets/s",
+    "Bwd Packets/s",
+    "Min Packet Length",
+    "Max Packet Length",
+    "Packet Length Mean",
+    "Packet Length Variance",
+    "FIN Flag Count",
+    "PSH Flag Count",
+    "ACK Flag Count",
+    "URG Flag Count",
+    "Down/Up Ratio",
+    "Init_Win_bytes_forward",
+    "Init_Win_bytes_backward",
+    "act_data_pkt_fwd",
+    "min_seg_size_forward",
+    "Active Mean",
+    "Active Std",
+    "Active Max",
+    "Active Min",
+    "Idle Mean",
+    "Idle Std"
+  ],
+  "label_classes": [
+    "BENIGN",
+    "Bot",
+    "DDoS",
+    "DoS GoldenEye",
+    "DoS Hulk",
+    "DoS Slowhttptest",
+    "DoS slowloris",
+    "FTP-Patator",
+    "Heartbleed",
+    "Infiltration",
+    "PortScan",
+    "SSH-Patator",
+    "Web Attack \ufffd Brute Force",
+    "Web Attack \ufffd Sql Injection",
+    "Web Attack \ufffd XSS"
+  ],
+  "n_classes": 15,
+  "splits": {
+    "X_train": [
+      1413318,
+      48
+    ],
+    "X_train_benign": [
+      1384807,
+      48
+    ],
+    "X_train_full": [
+      1620360,
+      48
+    ],
+    "X_val": [
+      347220,
+      48
+    ],
+    "X_test": [
+      347221,
+      48
+    ]
+  },
+  "class_balance_after_smote": {
+    "benign": 706659,
+    "attack": 706659
+  }
+}
