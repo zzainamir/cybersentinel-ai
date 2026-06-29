@@ -1,0 +1,16 @@
+CyberSentinelDetections_CL
+| where model_scores_isolation_forest_d > 0.5
+    and model_scores_autoencoder_d      > 0.4
+| extend
+    ZeroDayIndicator = iff(model_scores_random_forest_d < 0.4,
+                           "Possible zero-day (RF uncertain)",
+                           "Known attack pattern confirmed")
+| project
+    TimeGenerated,
+    ThreatScore          = threat_score_d,
+    IsolationForestScore = model_scores_isolation_forest_d,
+    AutoencoderScore     = model_scores_autoencoder_d,
+    RandomForestScore    = model_scores_random_forest_d,
+    LSTMScore            = model_scores_lstm_d,
+    ZeroDayIndicator
+| order by ThreatScore desc

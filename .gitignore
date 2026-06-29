@@ -18,3 +18,4 @@ __pycache__/
 *.env
 .azure/
 .DS_Store
+azure-function/local.settings.json

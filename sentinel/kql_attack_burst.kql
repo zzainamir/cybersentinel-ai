@@ -1,0 +1,20 @@
+CyberSentinelDetections_CL
+| where is_attack_b == true
+| summarize
+    AttackCount   = count(),
+    AvgScore      = round(avg(threat_score_d), 4),
+    MaxScore      = round(max(threat_score_d), 4),
+    HighCount     = countif(threat_level_s == "HIGH"),
+    CriticalCount = countif(threat_level_s == "CRITICAL")
+  by bin(TimeGenerated, 5m)
+| where AttackCount > 2
+| extend
+    AlertName     = "Attack burst detected",
+    AlertSeverity = iff(CriticalCount > 0, "High",
+                    iff(HighCount     > 0, "Medium", "Low")),
+    Description   = strcat(
+        "Detected ", AttackCount, " attack flows in 5 minutes. ",
+        "Max threat score: ", MaxScore
+    )
+| project TimeGenerated, AlertName, AlertSeverity,
+          AttackCount, AvgScore, MaxScore, Description

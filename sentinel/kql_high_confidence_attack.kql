@@ -1,0 +1,13 @@
+CyberSentinelDetections_CL
+| where threat_score_d >= 0.50
+| where is_attack_b == true
+| where model_scores_isolation_forest_d > 0.5
+    and model_scores_autoencoder_d > 0.4
+| project
+    TimeGenerated,
+    ThreatScore  = threat_score_d,
+    ThreatLevel  = threat_level_s,
+    IFScore      = model_scores_isolation_forest_d,
+    RFScore      = model_scores_random_forest_d,
+    AEScore      = model_scores_autoencoder_d,
+    LSTMScore    = model_scores_lstm_d
