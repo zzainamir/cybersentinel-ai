@@ -1,0 +1,137 @@
+{
+    "name": "CyberSentinel-AI Detection Coverage",
+    "versions": {
+        "attack": "14",
+        "navigator": "4.9.1",
+        "layer": "4.5"
+    },
+    "domain": "enterprise-attack",
+    "description": "Attack techniques detected by the CyberSentinel-AI ensemble (Isolation Forest, Random Forest, Autoencoder, LSTM) trained on CIC-IDS2017",
+    "filters": {
+        "platforms": ["Windows", "Linux", "macOS", "Network"]
+    },
+    "sorting": 0,
+    "layout": {
+        "layout": "side",
+        "aggregateFunction": "average",
+        "showID": true,
+        "showName": true,
+        "showAggregateScores": false,
+        "countUnscored": false
+    },
+    "hideDisabled": false,
+    "techniques": [
+        {
+            "techniqueID": "T1499",
+            "tactic": "impact",
+            "color": "#e74c3c",
+            "comment": "Endpoint DoS — detected via Attack Burst KQL rule (flow volume + Random Forest classification)",
+            "enabled": true,
+            "metadata": [
+                {"name": "Attack category", "value": "DoS (Hulk, GoldenEye, Slowloris, LOIC)"},
+                {"name": "Detection rule", "value": "kql_attack_burst.kql"}
+            ],
+            "links": [],
+            "showSubtechniques": false
+        },
+        {
+            "techniqueID": "T1498",
+            "tactic": "impact",
+            "color": "#e74c3c",
+            "comment": "Network DoS — detected via Attack Burst KQL rule (flow volume + Random Forest classification)",
+            "enabled": true,
+            "metadata": [
+                {"name": "Attack category", "value": "DDoS"},
+                {"name": "Detection rule", "value": "kql_attack_burst.kql"}
+            ],
+            "links": [],
+            "showSubtechniques": false
+        },
+        {
+            "techniqueID": "T1046",
+            "tactic": "discovery",
+            "color": "#e67e22",
+            "comment": "Port Scan — detected via Attack Burst KQL rule (rapid sequential connection attempts)",
+            "enabled": true,
+            "metadata": [
+                {"name": "Attack category", "value": "PortScan"},
+                {"name": "Detection rule", "value": "kql_attack_burst.kql"}
+            ],
+            "links": [],
+            "showSubtechniques": false
+        },
+        {
+            "techniqueID": "T1110",
+            "tactic": "credential-access",
+            "color": "#f39c12",
+            "comment": "Brute Force — FTP-Patator and SSH-Patator detected via High Confidence Attack rule (Random Forest + ensemble agreement)",
+            "enabled": true,
+            "metadata": [
+                {"name": "Attack category", "value": "FTP-Patator, SSH-Patator"},
+                {"name": "Detection rule", "value": "kql_high_confidence_attack.kql"}
+            ],
+            "links": [],
+            "showSubtechniques": false
+        },
+        {
+            "techniqueID": "T1190",
+            "tactic": "initial-access",
+            "color": "#9b59b6",
+            "comment": "Exploit Public-Facing Application — Web Attack (SQLi, XSS) detected via High Confidence Attack rule",
+            "enabled": true,
+            "metadata": [
+                {"name": "Attack category", "value": "Web Attack — SQL Injection, XSS"},
+                {"name": "Detection rule", "value": "kql_high_confidence_attack.kql"}
+            ],
+            "links": [],
+            "showSubtechniques": false
+        },
+        {
+            "techniqueID": "T1071",
+            "tactic": "command-and-control",
+            "color": "#3498db",
+            "comment": "Application Layer Protocol — Botnet C2 traffic detected via Anomaly Consensus rule (Isolation Forest + Autoencoder agreement)",
+            "enabled": true,
+            "metadata": [
+                {"name": "Attack category", "value": "Bot"},
+                {"name": "Detection rule", "value": "kql_anomaly_consensus.kql"}
+            ],
+            "links": [],
+            "showSubtechniques": false
+        },
+        {
+            "techniqueID": "T1078",
+            "tactic": "persistence",
+            "color": "#2ecc71",
+            "comment": "Valid Accounts — Infiltration detected via Anomaly Consensus rule (zero-day indicator when RF confidence is low)",
+            "enabled": true,
+            "metadata": [
+                {"name": "Attack category", "value": "Infiltration"},
+                {"name": "Detection rule", "value": "kql_anomaly_consensus.kql"}
+            ],
+            "links": [],
+            "showSubtechniques": false
+        }
+    ],
+    "gradient": {
+        "colors": ["#ffffff", "#e74c3c"],
+        "minValue": 0,
+        "maxValue": 1
+    },
+    "legendItems": [
+        {"label": "DoS / DDoS / Port Scan", "color": "#e74c3c"},
+        {"label": "Brute Force", "color": "#f39c12"},
+        {"label": "Web Application Attack", "color": "#9b59b6"},
+        {"label": "Botnet C2", "color": "#3498db"},
+        {"label": "Infiltration / Zero-day", "color": "#2ecc71"}
+    ],
+    "metadata": [
+        {"name": "Project", "value": "CyberSentinel-AI"},
+        {"name": "Dataset", "value": "CIC-IDS2017"}
+    ],
+    "links": [],
+    "showTacticRowBackground": true,
+    "tacticRowBackground": "#dddddd",
+    "selectTechniquesAcrossTactics": true,
+    "selectSubtechniquesWithParent": false
+}
